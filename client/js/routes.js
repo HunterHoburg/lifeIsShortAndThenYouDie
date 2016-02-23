@@ -4,6 +4,6 @@ angular.module("app")
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainController as MC'
-      });
+      });  
 
 });
