@@ -11,4 +11,14 @@ router.post('create', function(req, res, next) {
   knex.insert(newGame).table('games')
 })
 
+router.post('/insert', function(req, res, next) {
+  var newStory = {};
+  newStory.title = req.body.title;
+  newStory.url = req.body.url;
+  console.log(newStory);
+  // knex.insert(newStory).table('stories');
+  // var toLog = knex.select('*').from('stories');
+  // console.log(toLog);
+})
+
 module.exports = router;
