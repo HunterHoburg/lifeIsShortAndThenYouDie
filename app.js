@@ -3,7 +3,7 @@ var express = require('express')
 , app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-
+require('dotenv').config();
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
