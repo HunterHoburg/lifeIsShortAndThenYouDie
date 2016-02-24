@@ -1,4 +1,30 @@
 body {
   padding-top: 50px;
+  font-size: 10px;
+  font-family: serif;
+}
 
+.navbar {
+  margin-top: -3rem;
+}
+.navbar .brandWrapper {
+  width: 5rem;
+  height: 5rem;
+  display: inline-block;
+}
+
+.navbar .brandWrapper img {
+  height: inherit;
+  width: 100%;
+}
+
+.navbar ul,
+.navbar ul li {
+  display: inline-block;
+}
+
+.navbar ul li {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 5rem;
 }
