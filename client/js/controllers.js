@@ -8,7 +8,7 @@ angular.module("app")
     vm.currentTitle;
     vm.currentURL;
     vm.currentSentiment;
-
+    vm.storiesArr = [];
     vm.title = "Life is Short, and Then You Die :)";
     //QUERYING THE GUARDIAN FOR 50 STORIES
     vm.getArticles = function(topic) {
@@ -59,7 +59,7 @@ angular.module("app")
               title: title,
               url: url,
               sentiment: sentiment,
-              game_id: i,
+              game_id: 1,
               type: type
             }
           }).then(function(data) {
@@ -68,4 +68,16 @@ angular.module("app")
         }
       })
     };
+    vm.listArticles = function() {
+      $http({
+        method: 'POST',
+        url: 'http://localhost:3000/getstories',
+        data: {
+          game_id: 1
+        }
+      }).then(function(data){
+        vm.storiesArr.push(data);
+      })
+    }
+
   };

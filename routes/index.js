@@ -18,6 +18,8 @@ router.post('create', function(req, res, next) {
 });
 
 router.post('/insert', function(req, res, next) {
+  var newGame = {};
+  knex.insert(newGame).table('games');
   var newStory = {
     title: req.body.title,
     url: req.body.url,
@@ -26,13 +28,23 @@ router.post('/insert', function(req, res, next) {
     //Remember to add comment above when including sentiment column
     // sentiment: req.body.sentiment
   };
-  console.log(newStory);
   return knex.insert(newStory).into('stories').then(function(res) {
     console.log('super success!');
+  }, function(res) {
+    console.log('error: ' + res);
   });
-  // var toLog = knex.select('*').from('stories');
-  // console.log(toLog.title);
-  res.send('error: ' + res);
 });
+
+router.get('/getstories', function(req, res, next) {
+  console.log(req);
+  // knex('stories').where({
+  //   game_id: req.body.game_id
+  // }).select('*').then(function(res) {
+  //   res.send(res)
+  // })
+})
+
+
+
 
 module.exports = router;
