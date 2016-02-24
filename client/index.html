@@ -15,10 +15,19 @@
 
 </head>
 
-<body class="container" ng-controller="MainController as MC">
-
+<body class="container-fluid" ng-controller="MainController as MC">
+  <nav class='navbar navbar-default'>
+    <div class='brandWrapper'>
+      <img src='https://www.placecage.com/c/200/300'>
+    </div>
+    <ul>
+      <li>Life Is Short And Then You Die: A Cheerful Adventure Of Love And Inspiration</li>
+      <li>Save and Quit</li>
+    </ul>
+  </nav>
   <div class="row">
     <life-main></life-main>
+    <life-board></life-board>
   </div>
   <form>
     <input ng-model='articleSearchBar'>

@@ -3,4 +3,9 @@ angular.module('app')
     return {
       templateUrl: './views/main.html'
     };
+  }])
+  .directive('lifeBoard', [function() {
+    return {
+      templateUrl: './views/board.html'
+    };
   }]);
