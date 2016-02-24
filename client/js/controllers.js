@@ -18,35 +18,41 @@ angular.module("app")
         vm.currentURL = res.response.results[0].webUrl;
         for (var i = 0; i < res.response.results.length; i++) {
 
-          // Function for getting sentiment
-          // $http({
-          //   method: 'POST',
-          //   url: 'https://buzzlogix-text-analysis.p.mashape.com/sentiment',
-          //   headers: {
-          //   'X-Mashape-Key': 'tKN2shyLLimshtwjog91r18SHQdVp1NAYE2jsn83if2xCZHEia',
-          //   'content-type': 'text/plain'
-          //   },
-          //   data: {text: res.response.results[i].blocks.body[0].bodyTextSummary}
-          // }).then(function(data) {
-          //   // console.log(data.data.Predicted_Class)
-          //   // console.log(data.data.Probability);
-          //   vm.currentSentiment = data.data.Predicted_Class;
-          // }, function(data) {
-          //   console.log('error: ' + data);
-          // })
+          //FUNCTION FOR GETTING SENTIMENT
+          var sentiment;
+          $http({
+            method: 'POST',
+            url: 'https://buzzlogix-text-analysis.p.mashape.com/sentiment',
+            headers: {
+            'X-Mashape-Key': 'tKN2shyLLimshtwjog91r18SHQdVp1NAYE2jsn83if2xCZHEia',
+            'content-type': 'text/plain'
+            },
+            data: {text: res.response.results[i].blocks.body[0].bodyTextSummary}
+          }).then(function(data) {
+            // console.log(data.data.Predicted_Class)
+            // console.log(data.data.Probability);
+            vm.currentSentiment = data.data.Predicted_Class;
+            sentiment = data.data.Predicted_Class;
+            return sentiment;
+          }, function(data) {
+            console.log('error: ' + data);
+          })
 
           //Here will go the knex function to push stories into the table
           var title = res.response.results[i].webTitle;
           var url = res.response.results[i].webUrl;
+
           $http({
             method: 'POST',
             url: 'http://localhost:3000/insert',
             data: {
               title: title,
-              url: url
+              url: url,
+              sentiment: sentiment
             }
           }).then(function(data) {
             console.log('success ' + data);
+            console.log(sentiment);
           })
         }
       })
